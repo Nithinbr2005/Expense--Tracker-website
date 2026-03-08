@@ -12,37 +12,58 @@ A full-stack Expense Tracker built with a Python Flask backend and HTML/CSS/JS f
 - Responsive & modern glassmorphism UI built with CSS Grid and Flexbox
 - Fluid animations and micro-interactions
 
-## Prerequisites
-- Python 3.7+ installed
 
-## Installation
+---
 
-1. Open your terminal in this directory (`expense-tracker`).
-2. (Optional) Create a virtual environment:
-   ```bash
-   python -m venv venv
-   # On Windows:
-   venv\Scripts\activate
-   # On macOS/Linux:
-   source venv/bin/activate
-   ```
-3. Install Flask:
-   ```bash
-   pip install flask
-   ```
+## 🛠️ Technologies Used
 
-## Running the Application
+* HTML
+* CSS
+* JavaScript (DOM Manipulation)
 
-1. In the terminal, run the following command:
-   ```bash
-   python app.py
-   ```
-2. Open your web browser and navigate to:
-   ```
-   http://127.0.0.1:5000/
-   ```
+---
 
-## Example Layout
-- **Header:** Features the app title and a large, glowing "Total Balance" display that animates when expenses change.
-- **Left Panel (Add Expense):** A clean glassmorphic form for entering the amount, category, date, and description.
-- **Right Panel (Recent Expenses):** A structured table showing past expenses with a Category Filter dropdown. Each row has a sleek delete button to remove entries.
+## 📂 Project Structure
+
+expense-tracker
+│── index.html
+│── style.css
+│── script.js
+│── README.md
+
+---
+
+## ⚙️ How to Run the Project
+
+1. Clone the repository
+2. Open the project folder
+3. Open **index.html** in your browser
+
+Or simply run:
+
+git clone https://github.com/your-username/expense-tracker.git
+
+---
+
+## 📸 Screenshot
+
+<img width="573" height="627" alt="image" src="https://github.com/user-attachments/assets/60ab303b-7194-49d7-8a47-6a88382c30e8" />
+
+<img width="1373" height="966" alt="image" src="https://github.com/user-attachments/assets/49e86824-d5ba-40df-aa21-de4d6aba80c3" />
+
+<img width="1376" height="954" alt="image" src="https://github.com/user-attachments/assets/06de0cbe-71e7-4dc2-abea-de6bd63e8b76" />
+
+
+## 🎯 Future Improvements
+
+* Add local storage to save transactions
+* Add charts for expense visualization
+* Mobile responsive improvements
+
+---
+
+## 👨‍💻 Author
+
+**Nithin**
+
+If you like this project, feel free to ⭐ the repository.
