@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Pro</title>
+    <!-- CSS File -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for clean icons -->
+    <!-- Chart JS for dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <!-- Header displaying total amount -->
+        <header>
+            <div class="header-title-group">
+                <h1><i class="fa-solid fa-wallet"></i> Expense Tracker</h1>
+                <a href="{{ url_for('logout') }}" class="btn-logout" title="Sign Out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            </div>
+            <div class="total-card">
+                <p>Total Balance</p>
+                <h2 id="total-amount">$0.00</h2>
+            </div>
+        </header>
+
+        <main>
+            <!-- Dashboard Section -->
+            <section class="dashboard-section full-width glass-panel">
+                <div class="dashboard-grid">
+                    <div class="summary-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                            <div class="stat-info">
+                                <p>Highest Expense</p>
+                                <h3 id="highest-expense">-</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon category-icon"><i class="fa-solid fa-layer-group"></i></div>
+                            <div class="stat-info">
+                                <p>Top Category</p>
+                                <h3 id="top-category">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                </div>
+                <div class="trend-section">
+                    <p class="chart-label">Spending Trend</p>
+                    <div class="trend-chart-container">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Expense Form Panel -->
+            <section class="add-expense-section glass-panel">
+                <h3>Add New Expense</h3>
+                <form id="expense-form">
+                    <div class="form-group">
+                        <label for="amount">Amount ($)</label>
+                        <input type="number" id="amount" step="0.01" required placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="Food">Food & Dining</option>
+                            <option value="Transportation">Transportation</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="description">Description (Optional)</label>
+                        <input type="text" id="description" placeholder="What did you spend on?">
+                    </div>
+
+                    <button type="submit" class="btn-primary full-width">Add Expense <i
+                            class="fa-solid fa-plus"></i></button>
+                </form>
+            </section>
+
+            <!-- Dislay Expenses Panel -->
+            <section class="expenses-list-section glass-panel">
+                <div class="list-header">
+                    <h3>Recent Expenses</h3>
+                    <!-- Filter By Category -->
+                    <div class="filter-group">
+                        <button id="export-csv" class="btn-icon-text" title="Export to CSV">
+                            <i class="fa-solid fa-file-export"></i> Export
+                        </button>
+                        <label for="filter-category"><i class="fa-solid fa-filter"></i> Filter:</label>
+                        <select id="filter-category">
+                            <option value="All">All Categories</option>
+                            <option value="Food">Food & Dining</option>
+                            <option value="Transportation">Transportation</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table id="expenses-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expenses-body">
+                            <!-- Expenses will be dynamically loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                    <div id="no-expenses-msg" class="hidden">No expenses found. Start adding some!</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

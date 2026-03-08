@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Expense Tracker Pro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="auth-body">
+    <div class="background-animation"></div>
+
+    <div class="auth-container glass-panel">
+        <div class="auth-header">
+            <h2><i class="fa-solid fa-wallet"></i> Expense Tracker</h2>
+            <p id="auth-subtitle">Sign in to your account</p>
+            <div
+                style="background: rgba(255,255,255,0.05); border: 1px solid var(--panel-border); padding: 0.5rem; border-radius: 0.5rem; margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
+                <i class="fa-solid fa-circle-info"></i> <strong>Test User:</strong> nithin | <strong>Pass:</strong>
+                252425
+            </div>
+        </div>
+
+        {% if error %}
+        <div class="auth-error fade-in">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- Login Form -->
+        <form id="login-form" action="{{ url_for('login') }}" method="POST">
+            <input type="hidden" name="action" value="login">
+            <div class="form-group">
+                <label for="login-username">Username</label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-user input-icon"></i>
+                    <input type="text" id="login-username" name="username" required placeholder="Enter username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="login-password" name="password" required placeholder="Enter password">
+                </div>
+            </div>
+            <button type="submit" class="btn-primary full-width">Sign In <i
+                    class="fa-solid fa-arrow-right-to-bracket"></i></button>
+            <p class="auth-switch">Don't have an account? <a href="#" id="show-register">Create one</a></p>
+        </form>
+
+        <!-- Register Form (Hidden by default) -->
+        <form id="register-form" action="{{ url_for('register') }}" method="POST" class="hidden">
+            <input type="hidden" name="action" value="register">
+            <div class="form-group">
+                <label for="reg-username">Choose Username</label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-user-plus input-icon"></i>
+                    <input type="text" id="reg-username" name="username" required placeholder="Enter new username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="reg-password">Create Password</label>
+                <div class="input-icon-wrapper">
+                    <i class="fa-solid fa-key input-icon"></i>
+                    <input type="password" id="reg-password" name="password" required
+                        placeholder="Create strong password">
+                </div>
+            </div>
+            <button type="submit" class="btn-primary full-width" style="background: var(--success-color);">Create
+                Account <i class="fa-solid fa-user-check"></i></button>
+            <p class="auth-switch">Already have an account? <a href="#" id="show-login">Sign in</a></p>
+        </form>
+    </div>
+
+    <script>
+        // Simple script to toggle between login and register forms
+        document.getElementById('show-register').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('register-form').classList.remove('hidden');
+            document.getElementById('auth-subtitle').textContent = "Create a new account";
+            document.querySelector('.auth-container').classList.add('fade-in');
+        });
+
+        document.getElementById('show-login').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('register-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('auth-subtitle').textContent = "Sign in to your account";
+            document.querySelector('.auth-container').classList.add('fade-in');
+        });
+
+        // Remove animation class after it completes to allow re-triggering
+        document.querySelector('.auth-container').addEventListener('animationend', function () {
+            this.classList.remove('fade-in');
+        });
+    </script>
+</body>
+
+</html>
